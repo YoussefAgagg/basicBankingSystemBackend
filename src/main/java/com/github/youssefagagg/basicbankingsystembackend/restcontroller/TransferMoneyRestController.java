@@ -1,5 +1,6 @@
 package com.github.youssefagagg.basicbankingsystembackend.restcontroller;
 
+import com.github.youssefagagg.basicbankingsystembackend.exception.CustomerAccountNotFoundException;
 import com.github.youssefagagg.basicbankingsystembackend.model.TransferMoney;
 import com.github.youssefagagg.basicbankingsystembackend.service.TransferMoneyService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class TransferMoneyRestController {
 
 
     @PostMapping
-    public void addTransferMoneyOperation(@RequestBody TransferMoney transferMoney){
+    public void addTransferMoneyOperation(@RequestBody TransferMoney transferMoney) throws CustomerAccountNotFoundException {
         transferMoneyService.addTransferMoneyOperation(transferMoney);
 
     }

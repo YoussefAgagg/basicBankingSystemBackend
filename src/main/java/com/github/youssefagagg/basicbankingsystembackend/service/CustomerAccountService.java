@@ -24,4 +24,7 @@ public class CustomerAccountService {
         return customerAccountRepository.findCustomerAccountById(id)
                 .orElseThrow(() -> new CustomerAccountNotFoundException("Customer by id " + id + " was not found"));
     }
+    public CustomerAccount updateCustomerAccount(CustomerAccount customerAccount){
+       return customerAccountRepository.save(customerAccount);
+    }
 }
