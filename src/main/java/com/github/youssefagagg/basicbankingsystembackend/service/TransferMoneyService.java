@@ -1,5 +1,6 @@
 package com.github.youssefagagg.basicbankingsystembackend.service;
 
+import com.github.youssefagagg.basicbankingsystembackend.exception.AmountMoneyTransferException;
 import com.github.youssefagagg.basicbankingsystembackend.exception.CustomerAccountNotFoundException;
 import com.github.youssefagagg.basicbankingsystembackend.model.CustomerAccount;
 import com.github.youssefagagg.basicbankingsystembackend.model.TransferMoney;
@@ -23,7 +24,7 @@ public class TransferMoneyService {
     }
 
 
-    public void addTransferMoneyOperation(TransferMoney transferMoney) throws CustomerAccountNotFoundException {
+    public void addTransferMoneyOperation(TransferMoney transferMoney) throws CustomerAccountNotFoundException, AmountMoneyTransferException {
         CustomerAccount from=customerAccountService.getCustomerAccount(transferMoney.getTransferFrom());
         CustomerAccount to=customerAccountService.getCustomerAccount(transferMoney.getTransferTo());
         if(from.getBalance()>=transferMoney.getAmount()){
@@ -32,6 +33,8 @@ public class TransferMoneyService {
             customerAccountService.updateCustomerAccount(from);
             customerAccountService.updateCustomerAccount(to);
             transferMoneyRepository.save(transferMoney);
+        }else{
+            throw new AmountMoneyTransferException("the amount of money to transfer should be less than :"+from.getBalance());
         }
     }
 }

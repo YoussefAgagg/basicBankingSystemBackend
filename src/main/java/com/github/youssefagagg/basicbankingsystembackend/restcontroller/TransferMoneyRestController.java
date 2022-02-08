@@ -1,8 +1,11 @@
 package com.github.youssefagagg.basicbankingsystembackend.restcontroller;
 
+import com.github.youssefagagg.basicbankingsystembackend.exception.AmountMoneyTransferException;
 import com.github.youssefagagg.basicbankingsystembackend.exception.CustomerAccountNotFoundException;
 import com.github.youssefagagg.basicbankingsystembackend.model.TransferMoney;
 import com.github.youssefagagg.basicbankingsystembackend.service.TransferMoneyService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +22,9 @@ public class TransferMoneyRestController {
 
 
     @PostMapping
-    public void addTransferMoneyOperation(@RequestBody TransferMoney transferMoney) throws CustomerAccountNotFoundException {
+    public ResponseEntity<?> addTransferMoneyOperation(@RequestBody TransferMoney transferMoney) throws CustomerAccountNotFoundException, AmountMoneyTransferException {
         transferMoneyService.addTransferMoneyOperation(transferMoney);
+        return new ResponseEntity<>("transfer performed successfully", HttpStatus.OK);
 
     }
 }
