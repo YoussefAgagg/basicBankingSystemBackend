@@ -27,7 +27,7 @@ public class TransferMoneyService {
     public void addTransferMoneyOperation(TransferMoney transferMoney) throws CustomerAccountNotFoundException, AmountMoneyTransferException {
         CustomerAccount from=customerAccountService.getCustomerAccount(transferMoney.getTransferFrom());
         CustomerAccount to=customerAccountService.getCustomerAccount(transferMoney.getTransferTo());
-        if(from.getBalance()>=transferMoney.getAmount()){
+        if(from.getBalance()>=transferMoney.getAmount() &&transferMoney.getAmount()>0){
             from.setBalance(from.getBalance()-transferMoney.getAmount());
             to.setBalance(to.getBalance()+transferMoney.getAmount());
             customerAccountService.updateCustomerAccount(from);
