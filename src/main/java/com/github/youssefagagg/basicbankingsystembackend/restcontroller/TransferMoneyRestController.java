@@ -23,6 +23,7 @@ public class TransferMoneyRestController {
 
     @PostMapping
     public ResponseEntity<?> addTransferMoneyOperation(@RequestBody TransferMoney transferMoney) throws CustomerAccountNotFoundException, AmountMoneyTransferException {
+        System.out.println(transferMoney);
         transferMoneyService.addTransferMoneyOperation(transferMoney);
         return new ResponseEntity<>("transfer performed successfully", HttpStatus.OK);
 
