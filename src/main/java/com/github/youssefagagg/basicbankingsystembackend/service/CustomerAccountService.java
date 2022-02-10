@@ -18,7 +18,7 @@ public class CustomerAccountService {
         this.customerAccountRepository = customerAccountRepository;
     }
     public List<CustomerAccount> getAllCustomers(){
-        return  customerAccountRepository.findAll();
+        return  customerAccountRepository.findAllByOrderByIdAsc();
     }
     public CustomerAccount getCustomerAccount(int id) throws CustomerAccountNotFoundException {
         return customerAccountRepository.findCustomerAccountById(id)

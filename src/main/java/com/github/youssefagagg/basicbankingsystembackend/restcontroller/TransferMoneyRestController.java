@@ -25,7 +25,8 @@ public class TransferMoneyRestController {
     public ResponseEntity<?> addTransferMoneyOperation(@RequestBody TransferMoney transferMoney) throws CustomerAccountNotFoundException, AmountMoneyTransferException {
 
         transferMoneyService.addTransferMoneyOperation(transferMoney);
-        return new ResponseEntity<>("transfer performed successfully", HttpStatus.OK);
+
+        return new ResponseEntity<>("{message:transfer performed successfully}", HttpStatus.OK);
 
     }
 }

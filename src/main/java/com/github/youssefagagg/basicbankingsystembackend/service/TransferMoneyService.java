@@ -34,7 +34,7 @@ public class TransferMoneyService {
             customerAccountService.updateCustomerAccount(to);
             transferMoneyRepository.save(transferMoney);
         }else{
-            throw new AmountMoneyTransferException("the amount of money to transfer should be less than :"+from.getBalance());
+            throw new AmountMoneyTransferException("the amount of money to transfer should be greater than 0 and  less than :"+from.getBalance());
         }
     }
 }
